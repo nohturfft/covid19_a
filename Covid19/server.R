@@ -14,6 +14,29 @@ library(httr)
 library(ggplot2)
 # install.packages("dygraphs")
 library(dygraphs)
+# library('remotes')
+# remotes::install_github("GuangchuangYu/nCov2019", dependencies = TRUE)
+library(nCov2019)
+# x <- get_nCov2019(lang = 'en')
+# class(x)
+# str(x)
+# x$lastUpdateTime
+# sapply(x, class)
+# dim(x$global) # 122   9
+# View(x$global)
+
+cov19 <- load_nCov2019(lang = 'en')
+names(cov19) # "data"     "province" "global"   "time"     "lang" 
+sapply(cov19, class)
+#         data     province       global         time         lang 
+# "data.frame" "data.frame" "data.frame"       "Date"  "character"
+cov19$time # "2020-03-13"
+
+df.world <- cov19['global']
+class(df.world) # data.frame
+names(df.world) # "time"        "country"     "cum_confirm" "cum_heal"    "cum_dead"  
+nrow(subset(df.world, country == "United Kingdom")) # 37
+# subset(d, country == "United Kingdom")
 
 url.uk <- "https://www.arcgis.com/sharing/rest/content/items/e5fd11150d274bebaaf8fe2a7a2bda11/data"
 
