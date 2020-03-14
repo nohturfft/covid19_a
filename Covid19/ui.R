@@ -14,30 +14,17 @@ library(dygraphs)
 shinyUI(fluidPage(
 
     # App title ----
-    titlePanel("Tabsets"),
+    titlePanel("COVID19"),
     
     # Sidebar layout with input and output definitions ----
     sidebarLayout(
         
         # Sidebar panel for inputs ----
-        sidebarPanel(
-            
-            # Input: Select the random distribution type ----
-            radioButtons("dist", "Distribution type:",
-                         c("Normal" = "norm",
-                           "Uniform" = "unif",
-                           "Log-normal" = "lnorm",
-                           "Exponential" = "exp")),
+        sidebarPanel(width = 2,
+            selectInput(inputId='country', label='Country', choices=c("United Kingdom")),
             
             # br() element to introduce extra vertical spacing ----
-            br(),
-            
-            # Input: Slider for the number of observations to generate ----
-            sliderInput("n",
-                        "Number of observations:",
-                        value = 500,
-                        min = 1,
-                        max = 1000)
+            br()
             
         ),
         
